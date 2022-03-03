@@ -6,7 +6,7 @@
   * ウェブサーバのHTMLの実ファイル置き場
 
 * docker/
-  * docker-compose.yml ファイルがある場所。 docker-compose を実行するディレクト
+  * docker-compose.yml ファイルがある場所。 docker-compose を実行するディレクトリ。docker-compose build ; docker-compose up 
 
 * docker/web/
   * Apache2, PHPのDocekrfile 置き場
