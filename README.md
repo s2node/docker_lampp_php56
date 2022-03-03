@@ -1,4 +1,4 @@
-# DockerでLAMPPを使う基本セット
+# DockerでLAMPPを使う基本セット(PHP 5.6で mysql_系() 関数を使える設定
 
 ## ディレクトリ構造とファイル構成
 
