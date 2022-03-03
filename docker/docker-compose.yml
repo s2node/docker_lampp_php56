@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    container_name: docker-web
+    build: ./web
+    ports:
+      - '80:80'
+    volumes:
+      - ../html:/var/www/html
+    hostname: localhost
+  mysql:
+    container_name: docker-mysql
+    build: ./db
+    volumes:
+      - ./db/mysql_data:/var/lib/mysql
+    #ports:
+    #- '3306:3306'
+    hostname: localhost
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'database_name'
+      MYSQL_USER: 'database_userid'
+      MYSQL_PASSWORD: 'database_userid_password'
+      MYSQL_ROOT_PASSWORD: 'mysql_root_password'
+      MYSQL_ROOT_HOST: '%'
+      TZ: 'Asia/Tokyo'
+  phpmyadmin:
+    container_name: docker-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8080:80'
+    restart: always
+    environment:
+      PMA_HOST: 'mysql'
+      UPLOAD_LIMIT: '256M'
