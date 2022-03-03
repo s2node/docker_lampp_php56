@@ -15,6 +15,7 @@ RUN apt update && apt install -y \
    libpq-dev \
    libfreetype6-dev \
         && docker-php-ext-install mysql \
+        && docker-php-ext-install pdo_mysql \
         && docker-php-ext-configure gd --with-freetype --with-jpeg \
         && docker-php-ext-install -j$(nproc) gd \
         && echo "file_uploads = On\n" \
