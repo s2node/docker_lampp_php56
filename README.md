@@ -91,13 +91,27 @@ sudo docker-compose build mysql
 
 とすると，できる（一度buildしていると，通常ユーザでは上書きできないファイルができる。）
 
-### webでPHPへアップロードできるサイズ上限を500Mへ設定。　docker/web/Dockerfile 内にある500Mの部分
+### webでPHPへアップロードできるサイズ上限を500Mへ設定。　docker/web/php.ini 内にあるmemory_limit,upload_max_filesize,post_max_sizeの部分
 
-```Dockerfile
-    && echo "file_uploads = On\n" \
-         "memory_limit = 500M\n" \
-         "upload_max_filesize = 500M\n" \
-         "post_max_size = 500M\n" \
-         "max_execution_time = 600\n" \
-         > /usr/local/etc/php/conf.d/uploads.ini
+```ini
+[PHP]
+max_input_time = 60
+max_execution_time = 600
+
+memory_limit = 512M
+file_uploads = On
+upload_max_filesize = 500M
+post_max_size = 500M
+max_file_uploads = 20
+
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
+display_errors = On
+
+[Date]
+date.timezone = "Asia/Tokyo"
+
+[mbstring]
+mbstring.internal_encoding = "UTF-8"
+mbstring.language = "Japanese"
+
 ```
